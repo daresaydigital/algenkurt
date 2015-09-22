@@ -23,24 +23,22 @@ class MainView extends React.Component {
   render() {
     var header = 'Älgens väder';
     var locationStyle = [style.p, style.error];
-    var location = 'unknown';
-    if(this.state.weatherData != null) {
-      locationStyle = style.p;
-      location = JSON.stringify(this.state.weatherData);
-    }
+    // var location = 'unknown';
+    // if(this.state.weatherData != null) {
+    //   locationStyle = style.p;
+    //   location = JSON.stringify(this.state.weatherData);
+    // }
     return (
       <View style={style.main_view}>
         <Text style={style.h1}>{header}</Text>
-        <Text style={locationStyle}>{location}</Text>
+        <Text style={locationStyle}>{JSON.stringify(this.state.weatherData)}</Text>
       </View>
     );
   }
 
   componentDidMount(){
     getLocation((position) =>
-      getWeatherData(position, function(weatherData) {
-        this.setState({weatherData});
-      }));
+      getWeatherData(position, ((weatherData) => this.setState({weatherData}))));
   }
 }
 
