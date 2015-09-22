@@ -2,21 +2,37 @@
 
 var React = require('react-native');
 
+var getLocation = require('./geolocator');
+var getWeatherData = require('./network');
+
 var {
   Text,
-  View
+  View,
+  Store
 } = React;
 
 class MainView extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      weatherData: null
+    };
+  }
+
   render() {
-    var str = 'Hej Erik!';
     return (
       <View>
         <Text>
-          {str}
+          {JSON.stringify(this.state.weatherData)}
         </Text>
       </View>
     );
+  }
+
+  componentDidMount(){
+    getLocation((position) =>
+      getWeatherData((weatherData) => this.setState({weatherData})));
   }
 }
 
