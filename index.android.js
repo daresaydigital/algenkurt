@@ -9,7 +9,7 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
+  View
 } = React;
 
 var algenkurt = React.createClass({
