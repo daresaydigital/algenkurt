@@ -1,6 +1,4 @@
-
-var React = require('react-native');
-var {Text} = React;
+require('react-native');
 
 module.exports = function (locationUpdated){
   navigator.geolocation.getCurrentPosition(
@@ -8,4 +6,4 @@ module.exports = function (locationUpdated){
     (error) => alert(error.message),
     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
   );
-}
+};
