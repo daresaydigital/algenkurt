@@ -32,7 +32,7 @@ class MainView extends React.Component {
 
   componentDidMount(){
     getLocation((position) =>
-      getWeatherData((weatherData) => this.setState({weatherData})));
+      getWeatherData(position, ((weatherData) => this.setState({weatherData}))));
   }
 }
 
