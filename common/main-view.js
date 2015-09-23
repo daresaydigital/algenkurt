@@ -21,27 +21,34 @@ class MainView extends React.Component {
   }
 
   render() {
-    var header = 'Älgens väder';
-    var locationStyle = [style.p, style.error];
-    locationStyle = style.p;
-    //location = JSON.stringify(this.state.weatherData);
-
     return (
       <View style={style.main_view}>
-        <Text style={style.h1}>{header}</Text>
-        <Text>{JSON.stringify(this.state.weatherData)}</Text>
+        <Text style={style.h1}>Älgens väder</Text>
+        <Text>{this.state.long}° - {this.state.lat}°</Text>
+        <Text style={style.p}>Temperature: {this.state.t}°C</Text>
+        <Text style={style.p}>Wind: {this.state.ws} m/s {this.state.wd}°</Text>
+        <Text style={style.p}>Visibility: {this.state.vis} km</Text>
       </View>
     );
   }
 
-  componentDidMount() {
-    getLocation((position) =>
-      getWeatherData(position, (weatherData) =>
-        this.setState({weatherData})
-      )
-    );
+  updateWeatherData(weatherData) {
+    var first = weatherData.timeseries[0];
+    this.setState(first);
   }
 
+  componentDidMount() {
+    getLocation((position) => {
+      this.setState({
+        long: position.coords.longitude,
+        lat: position.coords.latitude
+      });
+      getWeatherData(position, (weatherData) => {
+        this.updateWeatherData(weatherData);
+        // this.setState({weatherData});
+      });
+    });
+  }
 }
 
 module.exports = MainView;

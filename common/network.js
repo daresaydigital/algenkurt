@@ -1,4 +1,4 @@
-var REQUEST_URL = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/#position_lat/lon/#position_long/data.json';
+var REQUEST_URL = 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/1/geopoint/lat/#position_lat/lon/#position_long/data.json';
 
 require('react-native');
 
